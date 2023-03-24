@@ -1,46 +1,399 @@
 @import '~style/helpers';
 
 .container { 
-	display: flex;
-	flex-direction: column;
-	background-image: url('../../assets/backgrounds/clear-iphone.jpg');
-	color: #fff;
-	width: 414px;
-	height: 736px;
-	text-align: center;
-	padding-top: 80px;
-	margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    width: 414px;
+    height: 736px;
+    text-align: center;
+    font-weight: bold;
+    padding-top: 80px;
+    margin: 0 auto;
+    overflow-y: scroll; /* Allow vertical scrolling */
+    
+    /* Hide the scrollbar */
+    -ms-overflow-style: none; /* Internet Explorer and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+@keyframes textColorChange {
+    
+    50% {
+        color: rgb(71, 71, 71);
+    }
+    100% {
+        color: black;
+    }
+}
+
+.box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(124, 124, 124);
+    border: 1px solid black;
+    color: black;
+    padding: 20px;
+    z-index: 999;
+    max-width: 414px;
+    max-height: 737px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in, textColorChange 3s forwards; /* Add the textColorChange animation */
+}
+
+
+.button {
+    border-radius: 50%;
+    background-color: rgb(0, 87, 145); /* Change the background color */
+    width: 20px;
+    height: 20px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a box shadow */
+    transition: transform 0.3s, background-color 0.3s; /* Add a transition for the transform and background-color properties */
+}
+
+.buttonC {
+    border-radius: 50%;
+    background-color: rgb(0, 87, 145); /* Change the background color */
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a box shadow */
+    transition: transform 0.3s, background-color 0.3s; /* Add a transition for the transform and background-color properties */
+}
+
+.button:hover {
+    background-color: rgb(239, 232, 232); /* Change the background color when hovering */
+    transform: scale(1.1); /* Increase the size of the button when hovering */
+}
+
+.buttonC:hover {
+    background-color: rgb(239, 232, 232); /* Change the background color when hovering */
+    transform: scale(1.1); /* Increase the size of the button when hovering */
+}
+
+/* Hide the scrollbar for Webkit-based browsers (Chrome, Safari) */
+.container::-webkit-scrollbar {
+    display: none;
 }
 .header {
-	display: flex;
-	flex-direction: column;
-	flex: 1;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    box-sizing: border-box;
+    display: flex;
 }
+
 .details {
-	flex: 4;
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
+
 .city {
-	flex: 1;
-	font-size: 1.7em;
-	font-weight: 400;	
+    flex: 1;
+    font-size: 1.7em;
+    font-weight: 400;    
 }
 .conditions {
-	flex: 1;
-	font-size: 1em;
+    flex: 1;
+    font-size: 1em;
 }
 .temperature {
-	flex: 2;
-	margin-top: 0;
-	font-size: 4.8em;
-	font-weight: 300;
-	letter-spacing: -12px;
+    flex: 2;
+    margin-top: 0;
+    font-size: 4.8em;
+    font-weight: 300;
+    letter-spacing: -12px;
 }
 .filled:after {
-	content: "°";
-	margin: 0 0 0 1rem;
-	font-size: 0.5em;
-	font-weight: 100;
-	display: inline-block;
-	padding-top: 10px;
-	vertical-align: top;
+    content: "°";
+    margin: 0 0 0 1rem;
+    font-size: 0.5em;
+    font-weight: 100;
+    display: inline-block;
+    padding-top: 10px;
+    vertical-align: top;
 }
+.forecast_container {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    top: -1000px; /* Adjust this value to move the forecast section up or down */
+}
+.forecast {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80px;
+    margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.imageWind{
+    height: 50px;
+    width: 64px;
+}
+.forecast img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+}
+.forecast div {
+    margin-bottom: 5px;
+}
+
+.weatherbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80px;
+    margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.weathercontainer {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    top: 400px; /* Adjust this value to move the forecast section up or down */
+    flex-wrap: wrap;
+}
+/* General animation for elements appearing */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Apply fadeIn animation to elements */
+.header, .weatherbox, .forecast {
+    animation: fadeIn 1s ease-in;
+}
+
+/* Add a staggered delay for weatherbox elements */
+.weathercontainer .weatherbox:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.weathercontainer .weatherbox:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.weathercontainer .weatherbox:nth-child(4) {
+    animation-delay: 0.6s;
+}
+
+.weathercontainer .weatherbox:nth-child(5) {
+    animation-delay: 0.8s;
+}
+
+/* Temperature degree animation */
+@keyframes rotateIn {
+    0% {
+        transform: rotate(-180deg);
+        opacity: 0;
+    }
+    100% {
+        transform: rotate(0);
+        opacity: 1;
+    }
+}
+
+.filled:after {
+    animation: rotateIn 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+@keyframes fadeInDown {
+    0% {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Apply fadeInDown animation to time, date, and day elements */
+.date_time .day, .date_time .date, .date_time .time {
+    animation: fadeInDown 1.5s ease-in-out;
+}
+
+/* Add a staggered delay for time, date, and day elements */
+.date_time .day {
+    animation-delay: 0.2s;
+}
+
+.date_time .date {
+    animation-delay: 0.4s;
+}
+
+.date_time .time {
+    animation-delay: 0.6s;
+}
+
+  .hourly_container {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 0;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    margin: 0 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.hourly_container {
+    display: flex;
+    overflow-x: auto;
+    padding: 5px; 
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 150px; /* Increased height */
+    align-items: center;
+    margin: -1000px 10px 0 10px; /* Add negative margin-top */
+    animation: fadeIn 1s ease-in-out;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.hourly_container::-webkit-scrollbar {
+    display: none;
+}
+.hourly {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px; /* Increased padding */
+    min-width: 80px; /* Increased min-width */
+    box-sizing: border-box;
+    margin-right: 15px; /* Increased margin-right */
+}
+
+.hourly:last-child {
+    margin-right: 0;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+.alertMessageBox {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    animation: fadeIn 1s ease-in;
+}
+
+.alertMessageBox p {
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+.alertMessageBox button {
+    background-color: #7289da;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Add this for fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+.toggleTipsButton {
+    background-color: rgb(0, 87, 145);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.toggleTipsButton:hover {
+    background-color: rgb(239, 232, 232);
+}
+
+
+
+
+.moveTipsDown {
+    margin-top: 50px;
+}
+.hide-when-tips {
+    display: none;
+  }
+.tips{
+    position: absolute;
+    top: 10px;
+    z-index: 10;
+    background-color: rgb(0, 87, 145);
+    padding: -1;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.tipItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    animation: fadeIn 1s ease-in;
+}
+
+.tipImage {
+    width: 50px;
+    height: 50px;
+    margin-right: 8px;
+    animation: fadeIn 1s ease-in;
+}
+
+.tipText {
+    font-size: 14px;
+    font-weight: 400;
+    animation: fadeIn 1s ease-in;
+}
+
