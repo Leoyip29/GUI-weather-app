@@ -1,4 +1,5 @@
-# Preact Boilerplate / Starter Kit for a Weather App
+# This project is based on weatherapp-boilerplate by Juan-Alvarado. I edited some feature in the iphone component for my ECS522U - Graphical User Interfaces module
+# This project including preact, javascript, less
 
 ## Set-Up Guide
 - [Installation](#installation)
